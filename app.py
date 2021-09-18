@@ -12,11 +12,8 @@ data = pd.read_csv('monarch.csv', names=['s','e','m']).set_index('m')
 # What is dat?
 series = pd.Series(index=range(data.s.min(),dt.now().year+1))
 
-print(series)
-
 for m in data.index:
     series.loc[data.loc[m].s:data.loc[m].e] = m
-print(series)
 
 
 @app.route('/', methods =['GET'])
@@ -29,4 +26,6 @@ def home():
     except KeyError:
         return f'Invalid input({series.index.min()}-{series.index.max()}'
 
-print(home(1999))
+
+#diffrent approach
+#@app.rout('/others')
